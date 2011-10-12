@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Yaybu</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">Yaybu</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#yaybu">Yaybu</a></li>
+            <li><a href="#yay">Yay</a></li>
+            <li><a href="#sidekick">Sidekick</a></li>
+            <li><a href="#caroline">Caroline</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>Hello, Yaybu!</h1>
+        <p>Yaybu is a configuration management tool written in lovely glorious Python.</p>
+        <p><a class="btn primary large" href="http://yaybu.readthedocs.org/">Learn more &raquo;</a></p>
+      </div>
+
+      <section id="yaybu">
+        <div class="page-header">
+          <h1>Yaybu <small>a modern, pythonic configuration engine</small></h1>
+        </div>
+        <div class="row">
+          <div class="span-two-thirds">
+
+            <h4>What is it</h4>
+            <p>A configuration management engine written in Python. You write some configuration:</p>
+            <pre class="prettyprint linenums">
+resources.append:
+  - Package:
+      name: git-core
+  - Checkout:
+      name: /var/local/checkouts/readthedocs
+      repository: http://github.com/rtfd/readthedocs.org.git
+  - Execute:
+      name: install-requirements
+      command: pip install -r pip_requirements.txt
+      cwd: /var/local/checkouts/readthedocs
+      policy:
+        execute:
+          when: sync
+          on: Checkout[/var/local/checkouts/readthedocs]
+</pre>
+
+          <p>And you run it:</p>
+
+            <pre class="prettyprint linenums">$ yaybu example.yay</pre>
+
+          </div>
+          <div class="span-one-third">
+            <h3>Learn More</h3>
+            <p>Yaybu is currently <span class="label success">Beta</span>. The last release was <a href="http://pypi.python.org/packages/source/Y/Yaybu/Yaybu-0.1.6.zip#md5=e37fdc3510a21a30d592470fea07f473">0.1.6</a>. The source is on <a href="http://github.com/isotoma/yaybu">GitHub</a>. The latest documentation is always available on <a href="http://yaybu.readthedogs.org">ReadTheDocs</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="yay">
+        <div class="page-header">
+          <h1>Yay <small>a shiny new configuration language</small></h1>
+        </div>
+        <div class="row">
+          <div class="span-two-thirds">
+            <p>Yay is the flexible YAML based language Yaybu uses for defining server configurations in. But its not just for Yaybu.</p>
+
+            <p>Simple use of Yay gives you Python dictionaries of your config file (after resolving any variables, conditionals and loops)</p>
+          <pre class="prettyprint linenums">
+import yay
+config = yay.load_uri("/tmp/myfile.yay")
+config["somedata"][0]
+</pre>
+
+          </div>
+          <div class="span-one-third">
+            <h3>Learn More</h3>
+            <p>Yay is currently <span class="label success">Beta</span>. The last release was <a href="http://pypi.python.org/packages/source/y/yay/yay-0.0.23.zip#md5=bc216902d523804317b11e3afd47be5a">0.0.23</a>. The source is on <a href="http://github.com/isotoma/yay">GitHub</a>. The latest documentation is always available on <a href="http://yay.readthedogs.org">ReadTheDocs</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sidekick">
+        <div class="page-header">
+          <h1>Sidekick <small>the Software Development Kit Development Kit</small></h1>
+        </div>
+        <div class="row">
+          <div class="span-two-thirds">
+            <p>Want a reproducible development environment with snapshotting? Done. Want to be able to setup a cloud instance to demo current progress to the client? Done. Want to be able to write tests against your infrastructure? Done.</p>
+
+            <p>Define your nodes in your <code>Sidekick</code> file and run <code>sidekick up</code> to get a working deployment.</p>
+
+            <pre class="prettyprint linenums">
+nodes:
+  - name: web
+    base: http://localhost/bases/lucid-amd64.tar.gz
+    yaybu:
+      recipe: web.yay
+</pre>
+            </div>
+          <div class="span-one-third">
+            <h3>Learn More</h3>
+            <p>Sidekick is currently <span class="label important">Alpha</span>. The source is on <a href="http://github.com/isotoma/sidekick">GitHub</a>. The latest documentation is always available on <a href="http://sidekick.readthedogs.org">ReadTheDocs</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="caroline">
+        <div class="page-header">
+          <h1>Caroline <small>your new boss</small></h1>
+        </div>
+        <div class="row">
+          <div class="span-two-thirds">
+            <p>We love buildbot. I've lost count of how many i've snook into use at work. Caroline is one of them. She watches you and tells you off when
+            you break the deployment.</p>
+
+            <p>You can configure Caroline to automatically maintain a running test instance of your work, rolling back to a working version if a deployment fails for any reason, with a few lines of Yay configuration. Caroline can also be configured to run any infrastructure level tests when your code changes.</p>
+
+            <p>A config might like something like this:</p>
+
+            <pre class="prettyprint linenums">
+projects:
+  - name: example
+    repo:
+      type: git
+      url: git://github.com/Jc2k/sidekick-example
+
+    on-failure: rollback
+    on-success: leave-running
+</pre>
+
+          </div>
+          <div class="span-one-third">
+            <h3>Learn More</h3>
+            <p>Caroline is currently <span class="label important">Alpha</span>. The source is on <a href="http://github.com/isotoma/caroline">GitHub</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p>&copy; Isotoma 2011</p>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
